@@ -1,0 +1,17 @@
+Geben sie zwei ganze Zahlen mit einer Leertaste ein:
+a: 17, b: 19, ggt euklidischer-algorithmus: 1
+Geben sie zwei ganze Zahlen mit einer Leertaste ein:
+a: 187, b: 187, ggt euklidischer-algorithmus: 187
+Geben sie zwei ganze Zahlen mit einer Leertaste ein:
+a: 2, b: 5, ggt euklidischer-algorithmus: 1
+Geben sie zwei ganze Zahlen mit einer Leertaste ein:
+a: 9, b: 119, ggt euklidischer-algorithmus: 1
+Geben sie zwei ganze Zahlen mit einer Leertaste ein:
+a: 4, b: 8, ggt euklidischer-algorithmus: 4
+Geben sie zwei ganze Zahlen mit einer Leertaste ein:
+a: 182, b: 44, ggt euklidischer-algorithmus: 2
+Geben sie zwei ganze Zahlen mit einer Leertaste ein:
+a: 12, b: 12, ggt euklidischer-algorithmus: 12
+Geben sie zwei ganze Zahlen mit einer Leertaste ein:
+a: 99, b: 35, ggt euklidischer-algorithmus: 1
+Geben sie zwei ganze Zahlen mit einer Leertaste ein:

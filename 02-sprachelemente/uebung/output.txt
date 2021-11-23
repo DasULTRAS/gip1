@@ -1,0 +1,7 @@
+Bitte geben Sie eine Zahl ein: 88: gerade.
+Bitte geben Sie eine Zahl ein: 99: ungerade.
+Bitte geben Sie eine Zahl ein: 22: gerade.
+Bitte geben Sie eine Zahl ein: 33: ungerade.
+Bitte geben Sie eine Zahl ein: 122: gerade.
+Bitte geben Sie eine Zahl ein: 14: gerade.
+Bitte geben Sie eine Zahl ein: 
