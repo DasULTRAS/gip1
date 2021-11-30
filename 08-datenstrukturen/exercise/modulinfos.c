@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 struct modul {
   char titel[64];
@@ -28,8 +29,24 @@ void print_modul(struct modul modul){
 int main(){
   struct modul modulinfos = {"Grundlagen der Informatik und Programmierung 1", "GIP1", 210, 7, 1, 1};
 
+  struct modul *module = calloc(64, sizeof(struct modul));
+
   print_format(6);
   print_modul(modulinfos);
+
+  int input;
+  struct modul *temp = module;
+  while (1) {
+    input = scanf("%64[^,],%6[^,],%u,%u,%u,%u ", (*temp).titel, (*temp).abkuerzung, &(*temp).workload, &(*temp).credits, &(*temp).semester, &(*temp).dauer);
+    if(input == EOF)
+      break;
+    print_modul(*temp);
+    ++temp;
+    if(temp == module+63)
+      break;
+  }
+
+  free(module);
 
   return 0;
 }
