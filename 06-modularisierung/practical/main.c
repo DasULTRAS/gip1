@@ -2,12 +2,12 @@
 #include <stdbool.h>
 #include <assert.h>
 
-#define MAZE_SIZE 22
+#define MAZE_SIZE 21
 
-char maze[MAZE_SIZE +1][MAZE_SIZE +1];
+char maze[MAZE_SIZE][MAZE_SIZE +1];
 
 void print_maze(){
-	// Koordniaten
+	// x-Koordniaten
 	printf("\n    ");
 	for(int i = 0;  i < MAZE_SIZE/10+1; ++i){
     printf("%d", i);
@@ -29,16 +29,9 @@ void print_maze(){
 }
 
 void scan_maze(){
-	int input;
 	int zeile = 0;
-	while (1) {
-		input = scanf("%[#!@ ]%*[\n] ", maze[zeile]);
-
-		if(input == EOF)
-			break;
-
+	while (scanf("%[#!@ ]%*[\n] ", maze[zeile]) != EOF)
 		++zeile;
-	}
 }
 
 /**
@@ -53,38 +46,36 @@ bool solve_maze(unsigned int x, unsigned int y){
 			return false;
 		}
 
+		// Absichern das ein Weg nicht doppelt genommen wird
 		maze[y][x] = '#';
 
 		// Nach unten
 		if(solve_maze(x, y+1)){
 			maze[y][x] = 'v';
-			return true;
-		}
+		} else
 		// Nach rechts
 		if(solve_maze(x+1, y)){
 			maze[y][x] = '>';
-			return true;
-		}
+		} else
 		// Nach links
 		if(solve_maze(x-1, y)){
 			maze[y][x] = '<';
-			return true;
-		}
+		} else
 		// Nach oben
 		if(solve_maze(x, y-1)){
 			maze[y][x] = '^';
-			return true;
+		} else {
+			maze[y][x] = '*';
+			return false;
 		}
-
-		maze[y][x] = '*';
-		return false;
+		return true;
 }
 
 int main(){
 	scan_maze();
 	print_maze();
 
-	if(solve_maze(1, 1)){
+	if(solve_maze(19, 9)){
 		printf("\nMaze solved.\n");
 	} else {
 		printf("\nMaze not solved.\n");
