@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
 #include <assert.h>
@@ -45,7 +46,7 @@ void clear() {
 	#endif
 
 	#if defined(_WIN32) || defined(_WIN64)
-	  system("cls");
+	 system("cls");
 	#endif
 }
 
