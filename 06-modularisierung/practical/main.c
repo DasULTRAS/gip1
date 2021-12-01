@@ -47,15 +47,29 @@ einen Weg von einem durch x und y angegeben Startpunk
 (markiert durch @) zum Ziel (markiert durch !) zu finden
 */
 bool solve_maze(unsigned int x, unsigned int y){
-		if(maze[y][x] == '!')
+		if(maze[y][x] == '!') {
 			return true;
+		} else if (maze[y][x] != '#'){
+
+		} else if (maze[y][x] != '#'){
+
+		} else if (maze[y][x] != '#'){
+
+		} else if (maze[y][x] != '#'){
+
+		}
 		return false;
 }
 
 int main(){
 	scan_maze();
 	print_maze();
-	
-	assert(solve_maze(19, 20));
+
+	if(solve_maze(19, 20)){
+		printf("labyrinth gelöst.");
+	} else {
+		printf("labyrinth nicht gelöst.");
+	}
+
 	return 0;
 }
