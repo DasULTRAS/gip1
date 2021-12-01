@@ -28,10 +28,11 @@ void print_maze(){
 	}
 }
 
+/**
+	scan_maze scannt ein labyrinth ein.
+*/
 void scan_maze(){
-	int zeile = 0;
-	while (scanf("%[#!@ ]%*[\n] ", maze[zeile]) != EOF)
-		++zeile;
+		for(int i = 0; i < MAZE_SIZE && scanf("%[#!@ ]%*[\n] ", maze[i]) != EOF; ++i);
 }
 
 /**
