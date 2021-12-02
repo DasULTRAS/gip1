@@ -1,3 +1,6 @@
 **/.DS_Store
 **/build/
 **/.projectile
+**/cmake-build-debug/
+**/.idea/
+**/.vscode/

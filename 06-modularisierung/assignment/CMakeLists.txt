@@ -9,6 +9,5 @@ add_executable(main
 	main.c)
 
 target_link_libraries(main
-  	my_math)
-target_link_libraries(main
- 	my_string)
+  	my_math
+	my_string)
