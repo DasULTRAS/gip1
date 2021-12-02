@@ -54,14 +54,14 @@ void my_strcpy_std(char* source, char* destination){
 /**
   Für jedes Element die Methode fn ausführen
 */
-void for_each(char* source, char* destination, (*fn)(char)){
+void for_each(char* source, char* destination, char (*fn)(char)){
   for(;*source != '\0'; ++source, ++destination)
     *destination = fn(*source);
 }
 
 /**
-Funktion void my_strtolower_std(char* source, char* destination), die die Zeichenkette
-source nach destination kopiert und dabei Groß- in Kleinbuchstaben umwandelt
+ * Funktion void my_strtolower_std(char* source, char* destination), die die Zeichenkette
+ * source nach destination kopiert und dabei Groß- in Kleinbuchstaben umwandelt
 */
 void my_strtolower_std(char* source, char* destination){
   for_each(source, destination, &my_tolower);

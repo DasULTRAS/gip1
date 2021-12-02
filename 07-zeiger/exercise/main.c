@@ -7,7 +7,7 @@ int main(){
     int length = 100;
     char* c = calloc(length +1, sizeof(int));
     char* cpy = calloc(length +1, sizeof(int));
-    char input = scanf("%100s", c);
+    int input = scanf("%100s", c);
 
     if(input == EOF)
       break;
