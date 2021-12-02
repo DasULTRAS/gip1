@@ -23,7 +23,7 @@ void print_format(int zeilen){
 }
 
 void print_modul(struct modul modul){
-  printf("%s\nKürzel  : %-5s     Workload: %-5u     Credits : %u\nSemester: %-5u     Dauer   : %u\n", modul.titel, modul.abkuerzung, modul.workload, modul.credits, modul.semester, modul.dauer);
+  printf("%s\nKuerzel : %-5s     Workload: %-5u     Credits : %u\nSemester: %-5u     Dauer   : %u\n", modul.titel, modul.abkuerzung, modul.workload, modul.credits, modul.semester, modul.dauer);
 }
 
 int main(){
