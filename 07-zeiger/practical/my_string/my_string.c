@@ -61,7 +61,7 @@ void my_to_upper_case(char *c) {
  */
 void for_each(char *first, void (*fn)(char *)) {
     for (; *first != '\0'; ++first)
-        fn(&first);
+        fn(first);
 }
 
 /**
