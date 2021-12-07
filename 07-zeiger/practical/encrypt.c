@@ -5,8 +5,13 @@
 #include "my_string/my_string.h"
 
 int main() {
-    char *str = "STAYHIGH";
+    char *str = "StayHigh";
     printf("Length: %d\n", my_string_length(str));
+    printf("default: %s \n", str);
+    my_string_to_upper_case(str);
+    printf("upper case: %s \n", str);
+    my_string_to_lower_case(str);
+    printf("lower case: %s \n", str);
 
     char *key = read_size_and_input();
     if (key == NULL) {
