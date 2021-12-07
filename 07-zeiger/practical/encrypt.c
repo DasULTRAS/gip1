@@ -2,14 +2,32 @@
 #include <stdlib.h>
 #include "common/common.h"
 #include "vigenere/vigenere.h"
+#include "my_string/my_string.h"
 
 int main() {
+<<<<<<< HEAD
     char *key = read_size_and_input();
     if (key == NULL) {
         return 2;
     }
     printf("%s\n", key);
 
+=======
+    char *str = "StayHigh";
+    printf("Length: %d\n", my_string_length(str));
+    printf("default: %s \n", str);
+    my_string_to_upper_case(str);
+    printf("upper case: %s \n", str);
+    my_string_to_lower_case(str);
+    printf("lower case: %s \n", str);
+
+    char *key = read_size_and_input();
+    if (key == NULL) {
+        return 2;
+    }
+    printf("%s\n", key);
+
+>>>>>>> 95b2e92989d28319a644e9fecb28fbd630a278a5
     char *text = read_size_and_input();
     if (text == NULL) {
         return 1;
