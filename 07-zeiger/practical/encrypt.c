@@ -6,6 +6,7 @@
 #include "my_string/my_string.h"
 
 int main() {
+    /** Tests **/
     assert(encrypt_char('a', ' ') == 'a'); // null shift
     assert(encrypt_char('c', '#') == 'f'); // arbitrary shift
 
@@ -21,6 +22,7 @@ int main() {
 
     assert(decrypt_char(' ', ' ' + 1) == '~' - 0); // data type underflow
     assert(decrypt_char(' ', ' ' + 33) == '~' - 32);
+    /** Tests **/
 
     char *key = read_size_and_input();
     if (key == NULL) {
