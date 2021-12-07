@@ -1,4 +1,6 @@
 #include <stdbool.h>
+#include <stdlib.h>
+
 #include "my_string.h"
 
 /**
@@ -62,6 +64,19 @@ void my_to_upper_case(char *c) {
 void for_each(char *first, void (*fn)(char *)) {
     for (; *first != '\0'; ++first)
         fn(first);
+}
+
+/**
+ * Dupliziert den String Array und gibt einen mit calloc reservierten String array zurück
+ * @param str zu duplizierender Array
+ * @return pointer auf den Anfang des mit calloc reservierten char array
+ */
+char *my_string_duplicate(char *origin) {
+    char *destination = calloc(my_string_length(origin) + 1, sizeof(char));
+    char *first = destination;
+    for (; *origin != '\0'; ++destination, ++origin)
+        *destination = *origin;
+    return first;
 }
 
 /**

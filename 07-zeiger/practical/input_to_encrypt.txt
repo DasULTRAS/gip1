@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>Login - Poodle</title>
+
+	<meta charset="UTF-8" />
+	<meta name="application-name" content="Poodle" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<link rel="icon" sizes="192x192" href="/img/whs-favicon.png" />
+
+	
+
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+
+	
+	<link rel="stylesheet" href="/css/style.css" />
+
+	<link rel="stylesheet" href="/css/login.css" />
+
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	
+	<script>
+		var bootstrapTooltip = $.fn.tooltip.noConflict();
+		$.fn.bootstrapTooltip = bootstrapTooltip;
+	</script>
+
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+	
+
+	
+
+	
+
+	
+
+	
+	
+
+	
+	
+
+	
+	<script src="/js/locales/de.js"></script>
+
+	
+	<script id="globaljs" data-context-path="/" src="/js/global.js"></script>
+
+	
+	
+
+	
+</head>
+
+<body>
+	
+	
+
+	
+	
+
+	<div class="container" id="content">
+		
+		
+		
+
+		
+		<div>
+	<header>
+	<h1>
+		<img class="inline hidden-xs" src="/img/whs-logo.png" width="275" alt="Startseite" />
+		Poodle
+	</h1>
+</header>
+
+	<h2>Login</h2>
+
+	
+	
+
+	<form method="post">
+		<div class="form-group">
+			<label for="username">Benutzername</label>
+			<input type="text" class="input-login form-control" id="username" name="username" autofocus="autofocus" />
+		</div>
+		<div class="form-group">
+			<label for="password">Passwort</label>
+			<input type="password" id="password" class="input-login form-control" name="password" />
+		</div>
+		<div id="link-forgot-password">
+			<a target="_blank" href="http://account.w-hs.de/">Passwort vergessen</a>
+		</div>
+		<button type="submit" class="btn btn-success">Anmelden</button>
+	</form>
+
+	<div id="link-about">
+		<a class="btn btn-default btn-xs" href="/about">Impressum</a>
+	</div>
+
+	<div id="link-datenschutz">
+		<a href="https://www.w-hs.de/service/impressum/datenschutzerklaerung/" class="btn btn-default btn-xs">Datenschutz</a>
+	</div>
+</div>
+	</div>
+
+	
+	<div id="ajaxWrapper">
+		<img id="ajaxLoadingIndicator" src="/img/loading.gif" alt="lade" />
+		<ul id="ajaxMessages" class="list-unstyled"></ul>
+	</div>
+</body>
+</html>

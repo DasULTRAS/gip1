@@ -1,17 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "common/common.h"
 #include "vigenere/vigenere.h"
 #include "my_string/my_string.h"
 
 int main() {
-    char str[] = "StayHigh";
-    printf("Length: %d\n", my_string_length(str));
-    printf("default: %s \n", str);
-    my_string_to_upper_case(str);
-    printf("upper case: %s \n", str);
-    my_string_to_lower_case(str);
-    printf("lower case: %s \n", str);
+    assert(encrypt_char('a', ' ') == 'a'); // null shift
+    assert(encrypt_char('c', '#') == 'f'); // arbitrary shift
+
+    assert(encrypt_char('~', '!') == ' '); // alphabet overflow
+
+    assert(encrypt_char('~', ' ' + 1) == ' ' + 0); // data type overflow
+    assert(encrypt_char('~', ' ' + 5) == ' ' + 4);
+
+    assert(decrypt_char('a', ' ') == 'a'); // null shift
+    assert(decrypt_char('f', '#') == 'c'); // arbitrary shift
+
+    assert(decrypt_char(' ', '!') == '~'); // alphabet overflow
+
+    assert(decrypt_char(' ', ' ' + 1) == '~' - 0); // data type underflow
+    assert(decrypt_char(' ', ' ' + 33) == '~' - 32);
 
     char *key = read_size_and_input();
     if (key == NULL) {
@@ -25,13 +34,21 @@ int main() {
     }
     printf("%s\n", text);
 
+    char *chiffrat = encrypt_string(text, key);
+    printf("Encrypted: %s\n", chiffrat);
 
-    printf("encrypt: %c\n", encrypt_char('R', 'D'));
-    printf("decrypt: %c\n", decrypt_char('y', '2'));
+    free(text);
+    text = decrypt_string(chiffrat, key);
+    printf("Decrypted: %s\n", text);
+
 
     // Gibt Speicher von calloc wieder frei
     free(text);
+    text = NULL;
     free(key);
+    key = NULL;
+    free(chiffrat);
+    chiffrat = NULL;
 
     return 0;
 }
