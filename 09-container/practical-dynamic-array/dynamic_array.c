@@ -44,10 +44,10 @@ void push_back_module(struct dynamic_modul_array *array, struct modul *modul) {
 }
 
 bool is_equal(char *str1, char *str2) {
-    for(; *str1 != '\0' && *str2 != '\0'; ++str1, ++str2)
-        if(*str1 != *str2)
+    for (; *str1 != '\0' && *str2 != '\0'; ++str1, ++str2)
+        if (*str1 != *str2)
             return false;
-    if(*str1 == *str2)
+    if (*str1 == *str2)
         return true;
     return false;
 }
@@ -63,14 +63,31 @@ bool is_equal(char *str1, char *str2) {
  */
 unsigned int find_module_index(struct dynamic_modul_array *array, char *abbreviation) {
     for (unsigned int i = 0; i < array->size; ++i)
-        if (is_equal((array->data +i)->abkuerzung, abbreviation))
+        if (is_equal((array->data + i)->abkuerzung, abbreviation))
             return i;
     return array->size;
+}
+
+/**
+ * Diese Funktion löscht das Element im Array, das durch index bezeichnet wird.
+ * @param array der bearbeitet wird
+ * @param index der gelöscht wird
+ */
+void erase_module(struct dynamic_modul_array *array, unsigned int index) {
+    if (index >= 0 && index < array->size - 1) // Wenn der index nicht der letzte ist
+        for (unsigned int i = index + 1; i < array->size; ++i)
+            *(array->data + i - 1) = *(array->data + i);
+    --array->size;
 }
 
 void print_modul(struct modul modul) {
     printf("%s\nKuerzel : %-5s     Workload: %-5u     Credits : %u\nSemester: %-5u     Dauer   : %u\n", modul.titel,
            modul.abkuerzung, modul.workload, modul.credits, modul.semester, modul.dauer);
+}
+
+void print_modul_array(struct dynamic_modul_array *array){
+    for (int i = 0; i < array->size; ++i)
+        print_modul(*(array->data + i));
 }
 
 int main() {
@@ -88,13 +105,21 @@ int main() {
         push_back_module(&modules, &temp);
     }
 
-    printf("%d/%d\n", modules.size, modules.capacity);
-
-    for (int i = 0; i < modules.size; ++i)
-        print_modul(*(modules.data + i));
+    printf("Capacity: %d/%d\n", modules.size, modules.capacity);
+    print_modul_array(&modules);
 
     char gip2[] = "GIP2";
-    printf("%s liegt im index: %u:10\n", gip2, );
+    printf("%s liegt im index: %u:10\n", gip2, find_module_index(&modules, gip2));
+
+    char alg[] = "ALG";
+    printf("Erstes Modul (%s) gelöscht\n", alg);
+    erase_module(&modules, find_module_index(&modules, alg));
+
+    char te[] = "TE";
+    printf("Letztes Modul (%s) gelöscht\n", te);
+    erase_module(&modules, find_module_index(&modules, te));
+
+    print_modul_array(&modules);
 
     destruct_dynamic_modules_array(&modules);
 }
