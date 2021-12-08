@@ -80,12 +80,29 @@ void erase_module(struct dynamic_modul_array *array, unsigned int index) {
     --array->size;
 }
 
+/**
+ * Diese Funktion fügt das durch module referenzierte Element vor dem Element ein,
+ * das durch index bezeichnet wird.
+ * @param array wird bearbeiter
+ * @param index des neuen modul
+ * @param module das hinzugefügte modul
+ */
+void insert_module(struct dynamic_modul_array* array, unsigned int index, struct modul* module){
+    if (array->size >= array->capacity)
+        extend_dynamic_modules_array(array->capacity*2, array);
+
+    for(int i = array->size; i > index; --i)
+        *(array->data +i) = *(array->data +i-1);
+    *(array->data +index) = *module;
+    ++array->size;
+}
+
 void print_modul(struct modul modul) {
     printf("%s\nKuerzel : %-5s     Workload: %-5u     Credits : %u\nSemester: %-5u     Dauer   : %u\n", modul.titel,
            modul.abkuerzung, modul.workload, modul.credits, modul.semester, modul.dauer);
 }
 
-void print_modul_array(struct dynamic_modul_array *array){
+void print_modul_array(struct dynamic_modul_array *array) {
     for (int i = 0; i < array->size; ++i)
         print_modul(*(array->data + i));
 }
@@ -102,7 +119,7 @@ int main() {
         if (input == EOF)
             break;
 
-        push_back_module(&modules, &temp);
+        insert_module(&modules, modules.size, &temp);
     }
 
     printf("Capacity: %d/%d\n", modules.size, modules.capacity);
@@ -118,6 +135,9 @@ int main() {
     char te[] = "TE";
     printf("Letztes Modul (%s) gelöscht\n", te);
     erase_module(&modules, find_module_index(&modules, te));
+
+    struct modul mid = {"The Middle", "MID", 187, 100, 0, 1};
+    insert_module(&modules, 0, &mid);
 
     print_modul_array(&modules);
 
