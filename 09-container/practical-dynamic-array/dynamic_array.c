@@ -78,13 +78,13 @@ void erase_module(struct Dynamic_modul_array *array, unsigned int index) {
  * @param index des neuen modul
  * @param module das hinzugefügte modul
  */
-void insert_module(struct Dynamic_modul_array* array, unsigned int index, struct Modul* module){
+void insert_module(struct Dynamic_modul_array *array, unsigned int index, struct Modul *module) {
     if (array->size >= array->capacity)
-        extend_dynamic_modules_array(array, array->capacity*2);
+        extend_dynamic_modules_array(array, array->capacity * 2);
 
-    for(int i = array->size; i > index; --i)
-        *(array->data +i) = *(array->data +i-1);
-    *(array->data +index) = *module;
+    for (int i = array->size; i > index; --i)
+        *(array->data + i) = *(array->data + i - 1);
+    *(array->data + index) = *module;
     ++array->size;
 }
 
