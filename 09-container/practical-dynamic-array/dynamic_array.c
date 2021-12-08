@@ -2,31 +2,22 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-struct modul {
-    char titel[64];
-    char abkuerzung[5];
-    unsigned int workload, credits, semester, dauer;
-};
+#include "dynamic_array.h"
 
-struct dynamic_modul_array {
-    struct modul *data;
-    unsigned int size, capacity;
-};
-
-struct dynamic_modul_array construct_dynamic_modules_array(unsigned int size) {
-    struct dynamic_modul_array array = {malloc(sizeof(struct modul) * size), 0, size};
+struct Dynamic_modul_array construct_dynamic_modules_array(unsigned int size) {
+    struct Dynamic_modul_array array = {malloc(sizeof(struct Modul) * size), 0, size};
     return array;
 }
 
-void destruct_dynamic_modules_array(struct dynamic_modul_array *array) {
+void destruct_dynamic_modules_array(struct Dynamic_modul_array *array) {
     free(array->data);
     array->data = NULL;
     array->size = 0;
     array->data = 0;
 }
 
-void extend_dynamic_modules_array(unsigned int new_capacity, struct dynamic_modul_array *array) {
-    struct modul *new_data = malloc(sizeof(struct modul) * new_capacity);
+void extend_dynamic_modules_array(struct Dynamic_modul_array *array, unsigned int new_capacity) {
+    struct Modul *new_data = malloc(sizeof(struct Modul) * new_capacity);
     for (unsigned i = 0; i < new_capacity && i < array->size; ++i) {
         *(new_data + i) = *(array->data + i);
     }
@@ -35,9 +26,9 @@ void extend_dynamic_modules_array(unsigned int new_capacity, struct dynamic_modu
     array->capacity = new_capacity;
 }
 
-void push_back_module(struct dynamic_modul_array *array, struct modul *modul) {
+void push_back_module(struct Dynamic_modul_array *array, struct Modul *modul) {
     if (array->size >= array->capacity) {
-        extend_dynamic_modules_array(array->size * 2, array);
+        extend_dynamic_modules_array(array, array->size * 2);
     }
     *(array->data + array->size) = *modul;
     ++array->size;
@@ -61,7 +52,7 @@ bool is_equal(char *str1, char *str2) {
  * @param abbreviation die gesuchte Abkürzung
  * @return der index der gesuchten Abkürung oder wenn nicht gefunden = size
  */
-unsigned int find_module_index(struct dynamic_modul_array *array, char *abbreviation) {
+unsigned int find_module_index(struct Dynamic_modul_array *array, char *abbreviation) {
     for (unsigned int i = 0; i < array->size; ++i)
         if (is_equal((array->data + i)->abkuerzung, abbreviation))
             return i;
@@ -73,7 +64,7 @@ unsigned int find_module_index(struct dynamic_modul_array *array, char *abbrevia
  * @param array der bearbeitet wird
  * @param index der gelöscht wird
  */
-void erase_module(struct dynamic_modul_array *array, unsigned int index) {
+void erase_module(struct Dynamic_modul_array *array, unsigned int index) {
     if (index >= 0 && index < array->size - 1) // Wenn der index nicht der letzte ist
         for (unsigned int i = index + 1; i < array->size; ++i)
             *(array->data + i - 1) = *(array->data + i);
@@ -87,9 +78,9 @@ void erase_module(struct dynamic_modul_array *array, unsigned int index) {
  * @param index des neuen modul
  * @param module das hinzugefügte modul
  */
-void insert_module(struct dynamic_modul_array* array, unsigned int index, struct modul* module){
+void insert_module(struct Dynamic_modul_array* array, unsigned int index, struct Modul* module){
     if (array->size >= array->capacity)
-        extend_dynamic_modules_array(array->capacity*2, array);
+        extend_dynamic_modules_array(array, array->capacity*2);
 
     for(int i = array->size; i > index; --i)
         *(array->data +i) = *(array->data +i-1);
@@ -97,49 +88,12 @@ void insert_module(struct dynamic_modul_array* array, unsigned int index, struct
     ++array->size;
 }
 
-void print_modul(struct modul modul) {
+void print_modul(struct Modul modul) {
     printf("%s\nKuerzel : %-5s     Workload: %-5u     Credits : %u\nSemester: %-5u     Dauer   : %u\n", modul.titel,
            modul.abkuerzung, modul.workload, modul.credits, modul.semester, modul.dauer);
 }
 
-void print_modul_array(struct dynamic_modul_array *array) {
+void print_modul_array(struct Dynamic_modul_array *array) {
     for (int i = 0; i < array->size; ++i)
         print_modul(*(array->data + i));
-}
-
-int main() {
-    // struct modul gip1 = {"Grundlagen der Informatik und Programmierung 1", "GIP1", 210, 7, 1, 1};
-
-    struct dynamic_modul_array modules = construct_dynamic_modules_array(2);
-
-    while (1) {
-        struct modul temp;
-        int input = scanf("%64[^,],%6[^,],%u,%u,%u,%u ", temp.titel, temp.abkuerzung, &temp.workload, &temp.credits,
-                          &temp.semester, &temp.dauer);
-        if (input == EOF)
-            break;
-
-        insert_module(&modules, modules.size, &temp);
-    }
-
-    printf("Capacity: %d/%d\n", modules.size, modules.capacity);
-    print_modul_array(&modules);
-
-    char gip2[] = "GIP2";
-    printf("%s liegt im index: %u:10\n", gip2, find_module_index(&modules, gip2));
-
-    char alg[] = "ALG";
-    printf("Erstes Modul (%s) gelöscht\n", alg);
-    erase_module(&modules, find_module_index(&modules, alg));
-
-    char te[] = "TE";
-    printf("Letztes Modul (%s) gelöscht\n", te);
-    erase_module(&modules, find_module_index(&modules, te));
-
-    struct modul mid = {"The Middle", "MID", 187, 100, 0, 1};
-    insert_module(&modules, 0, &mid);
-
-    print_modul_array(&modules);
-
-    destruct_dynamic_modules_array(&modules);
 }

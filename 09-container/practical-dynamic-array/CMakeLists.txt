@@ -3,5 +3,7 @@ project(practical_dynamic_array C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(dynamic_array
-        dynamic_array.c)
+add_executable(main
+        dynamic_array.c
+        dynamic_array.h
+        main.c)
