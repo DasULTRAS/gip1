@@ -9,7 +9,14 @@
 
 #define length 10
 
-bool is_sorting(unsigned int trys, unsigned int array_length, bool(*sort_fn)(int *, unsigned int)) {
+/**
+ * Testing sorting function
+ * @param trys times of testing the method
+ * @param array_length length of testing array
+ * @param sort_fn sorting function
+ * @return true if every array is sorted
+ */
+bool is_sorting(unsigned int trys, unsigned int array_length, void(*sort_fn)(int *, unsigned int)) {
     for (int i = 0; i < trys; ++i) {
         int *arr = get_random_int_array(array_length);
         sort_fn(arr, array_length);
@@ -29,10 +36,7 @@ int main() {
     int *int_array = get_random_int_array(length);
     print_int_array(int_array, length);
 
-    int sorted[length] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    assert(is_sorted_int(&sorted, length));
-
-    assert(is_sorting(100, 1000, &bubble_sort));
+    assert(is_sorting(1000, 1000, &bubble_sort));
 
     // Reservierten Speicher zurückgeben
     free(int_array);
