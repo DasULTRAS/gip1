@@ -1,4 +1,6 @@
 project(gip1-10-exercise)
 
 add_executable(main
-main.c)
+        my_array/my_array.c
+        my_array/my_array.h
+        main.c)
