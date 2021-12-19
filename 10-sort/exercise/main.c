@@ -37,6 +37,7 @@ int main() {
     print_int_array(int_array, length);
 
     assert(is_sorting(1000, 1000, &bubble_sort));
+    assert(is_sorting(1000, 1000, &selection_sort));
 
     // Reservierten Speicher zurückgeben
     free(int_array);
