@@ -26,3 +26,9 @@ void selection_sort(int *array, unsigned int length){
         swap(array[i], array[smallest]);
     }
 }
+
+void insertion_sort(int *array, unsigned int length){
+    for(int i = 1; i < length; ++length)
+        for(int j = i; j > 0 && array[j-1] > array[j]; --j)
+            swap(array[j], array[j-1]);
+}

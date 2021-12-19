@@ -3,5 +3,6 @@
 
 void bubble_sort(int* array, unsigned int length);
 void selection_sort(int *array, unsigned int length);
+void insertion_sort(int *array, unsigned int length);
 
 #endif // my_sorting.h

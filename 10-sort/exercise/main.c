@@ -25,6 +25,7 @@ bool is_sorting(unsigned int trys, unsigned int array_length, void(*sort_fn)(int
             return false;
         }
         free(arr);
+        arr = NULL;
     }
     return true;
 }
@@ -38,6 +39,7 @@ int main() {
 
     assert(is_sorting(1000, 1000, &bubble_sort));
     assert(is_sorting(1000, 1000, &selection_sort));
+    assert(is_sorting(1000, 1000, &insertion_sort));
 
     // Reservierten Speicher zurückgeben
     free(int_array);
