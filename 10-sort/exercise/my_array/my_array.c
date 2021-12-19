@@ -9,8 +9,8 @@ int* get_random_int_array(unsigned int length) {
     int *first = calloc(length, sizeof(int));
 
     // replace every index with random number
-    for (int i = &first; i < length; ++i)
-        *(first +i) = rand();
+    for (int i = 0; i < length; ++i)
+        first[i] = rand();
 
     return first;
 }
@@ -23,13 +23,15 @@ void print_int_array(int *int_array, unsigned int length) {
 
     printf("\n");
 
-    for (int i = &int_array; i < length; ++i)
-        printf("%6d, ", *(&int_array + i));
+    for (int i = 0; i < length; ++i)
+        printf("%6d, ", int_array[i]);
+
+    printf("\n");
 }
 
 bool is_sorted_int(int *int_array, unsigned int length){
     for(int i = 1; i < length; ++i)
-        if(*(int_array + i -1) > *(int_array + i))
+        if(int_array[i -1] > int_array[i])
             return false;
     return true;
 }
