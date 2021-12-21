@@ -1,8 +1,6 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 #include "sorting_function.h"
-#include "my_array.h"
 
 #define swap(a, b)\
 {\
@@ -58,7 +56,8 @@ void quick_sort(int *arr, int left, int right) {
             ++l;
         while (arr[right] <= arr[r] && l < r)
             --r;
-        if (l < r) swap(arr[l], arr[r]);
+        if (l < r)
+            swap(arr[l], arr[r]);
     } while (l < r);
 
     // Pivot in die mitte tauschen

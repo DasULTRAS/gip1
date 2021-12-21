@@ -43,9 +43,9 @@ int main() {
     free(int_array_1);
     int_array_1 = NULL;
 
-    assert(is_sorting(100, 100, &bubble_sort));
-    assert(is_sorting(100, 100, &selection_sort));
-    assert(is_sorting(100, 100, &insertion_sort));
+    assert(is_sorting(1, 1000000, &bubble_sort));
+    assert(is_sorting(1, 1, &selection_sort));
+    assert(is_sorting(1, 1, &insertion_sort));
 
     return 0;
 }
