@@ -23,6 +23,8 @@ int main(){
 
     struct modul_tree* tree = construct_modul_tree(&modul_cmp);
     insert_sorted_tree(tree, gip1);
+    insert_sorted_tree(tree, gip2);
 
-    print_modul(*tree->first);
+    print_modul(tree->first->data);
+    print_modul(tree->first->right->data);
 }
