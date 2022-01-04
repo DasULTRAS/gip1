@@ -39,6 +39,30 @@ void insert_sorted_tree(struct modul_tree *tree, struct modul data) {
         insert_sorted_tree_recursive(tree->first, node, tree->sort_criteria);
 }
 
-void pre-order-traversierung(void(*fn)(struct modul data)){
+void pre_order_traversierung(struct modul_tree_node *node, void(*fn)(struct modul data)) {
+    if (node != NULL) {
+        fn(node->data);
+        pre_order_traversierung(node->left, fn);
+        pre_order_traversierung(node->right, fn);
+    }
+}
+
+void in_order_traversierung(struct modul_tree_node *node, void(*fn)(struct modul data)) {
+    if (node != NULL) {
+        in_order_traversierung(node->left, fn);
+        fn(node->data);
+        in_order_traversierung(node->right, fn);
+    }
+}
+
+void post_order_traversierung(struct modul_tree_node *node, void(*fn)(struct modul data)) {
+    if (node != NULL) {
+        post_order_traversierung(node->left, fn);
+        post_order_traversierung(node->right, fn);
+        fn(node->data);
+    }
+}
+
+void print_tree_view(struct modul_tree* tree){
 
 }
