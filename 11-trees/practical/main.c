@@ -23,10 +23,9 @@ int main(){
 
     struct modul_tree* tree = construct_modul_tree(&modul_cmp);
 
-    int input;
     while (1) {
         struct modul temp = {"", "", 0, 0, 0, 0};
-        input = scanf("%64[^,],%6[^,],%u,%u,%u,%u ", temp.titel, temp.abkuerzung, &temp.workload, &temp.credits, &temp.semester, &temp.dauer);
+        int input = scanf("%64[^,],%6[^,],%u,%u,%u,%u ", temp.titel, temp.abkuerzung, &temp.workload, &temp.credits, &temp.semester, &temp.dauer);
         if(input == EOF)
             break;
         insert_sorted_tree(tree, temp);
