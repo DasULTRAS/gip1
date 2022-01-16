@@ -1,37 +1,27 @@
-#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-#include "src/module.h"
+#include "src/bst.h"
 
-/**
- * Compares two modules
- * @param first
- * @param second
- * @return If first is less than second < 0
- * If first is equal 0
- * If first is more than second > 0
- */
-int module_cmp(struct module first, struct module second){
-    return strcmp(first.abbreviation, second.abbreviation);
+void print_string(char* string){
+    printf("%s, ", string);
 }
 
 int main(){
-    struct module gip1 = {"Grundlagen der Informatik und Programmierung 1", "GIP1", 210, 7, 1, 1};
-    struct module gip2 = {"Grundlagen der Informatik und Programmierung 2", "GIP2", 210, 7, 2, 1};
+    struct bst* tree = bst_construct();
 
-    print_module(gip1);
+    char* abbreviation = calloc(6, sizeof(char));
+    while(1){
+        int input = scanf(" %5s", abbreviation);
 
-    /*
-    struct module_tree* tree = construct_module_tree(&modul_cmp);
-
-    while (1) {
-        struct module temp = {"", "", 0, 0, 0, 0};
-        int input = scanf("%64[^,],%6[^,],%u,%u,%u,%u ", temp.title, temp.abbreviation, &temp.workload, &temp.credits, &temp.semester, &temp.duration);
         if(input == EOF)
             break;
-        insert_sorted_tree(tree, temp);
+
+        bst_insert(&tree, abbreviation);
     }
-     */
+    free(abbreviation);
+
+    bst_in_order_traverse(tree, &print_string);
 
     printf("FERTIG");
 }

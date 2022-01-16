@@ -1,6 +1,8 @@
+**/.bak
 **/.DS_Store
-**/build/
-**/.projectile
-**/cmake-build-debug/
 **/.idea/
+**/.projectile
 **/.vscode/
+
+**/build/
+**/cmake-build-debug/
