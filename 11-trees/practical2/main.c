@@ -23,5 +23,7 @@ int main(){
 
     bst_in_order_traverse(tree, &print_string);
 
-    printf("FERTIG");
+    bst_destruct(tree);
+
+    return 0;
 }
