@@ -22,8 +22,13 @@ int main(){
     free(abbreviation);
 
     bst_in_order_traverse(tree, &print_string);
+    printf("\n");
+
+    bst_print(tree);
 
     bst_destruct(tree);
+
+    printf("Number of Nodes: %d\n", bst_count_nodes(tree));
 
     return 0;
 }

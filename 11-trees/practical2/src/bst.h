@@ -18,4 +18,7 @@ void bst_pre_order_traverse(struct bst *tree, void(*fn)(char* data));
 void bst_in_order_traverse(struct bst *tree, void(*fn)(char* data));
 void bst_post_order_traverse(struct bst *tree, void(*fn)(char* data));
 
+void bst_print(struct bst* tree);
+int bst_count_nodes(struct bst* tree);
+
 #endif // MODULE_TREE_H_

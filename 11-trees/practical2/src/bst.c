@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -8,6 +9,7 @@
 
 // PRIVATE HEADER
 struct bst *bst_destruct_node(struct bst *node);
+void bst_print_tree(struct bst* node, int level);
 // end PRIVATE HEADER
 
 struct bst *bst_construct() {
@@ -68,4 +70,33 @@ void bst_post_order_traverse(struct bst *tree, void(*fn)(char *data)) {
     bst_in_order_traverse(tree->left, fn);
     bst_in_order_traverse(tree->right, fn);
     fn(tree->data);
+}
+
+void bst_print(struct bst* tree){
+    bst_print_tree(tree, 0);
+}
+
+void bst_print_tree(struct bst* node, int level){
+    if(node == NULL)
+        return;
+
+    for(int i = 0; i < level; ++i)
+        printf("    ");
+
+    printf("%s\n", node->data);
+
+    bst_print_tree(node->right, level+1);
+    bst_print_tree(node->left, level+1);
+}
+
+int bst_count_nodes(struct bst* tree){
+    if(tree == NULL)
+        return 0;
+
+    int counter = 1;
+
+    counter += bst_count_nodes(tree->left);
+    counter += bst_count_nodes(tree->right);
+
+    return counter;
 }
