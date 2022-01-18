@@ -1,0 +1,11 @@
+* for-each-Schleife: for i in <array>; do <statement>; done
+
+* Zahlenreihe 'seq <max>';
+
+* for-Schleife: for i in 'seq <length>'; do <statement>; done
+
+* Zufallszahl: $RANDOM
+
+* Mathematische Ausdrücke berrechnen: expr <Rechnung>
+
+* Reihen Sortieren: <reihe> | sort
